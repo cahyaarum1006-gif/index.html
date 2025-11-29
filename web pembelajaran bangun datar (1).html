@@ -1,0 +1,1920 @@
+<!doctype doctype>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutor Cerdas Bangun Datar - Belajar Geometri Menyenangkan</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-sizing: border-box;
+        }
+        
+        /* Navigation Header */
+        .navbar {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        
+        .nav-menu li a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .nav-menu li a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            width: 100%;
+            min-height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 2rem 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            opacity: 0.15;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .shape-2 { top: 60%; left: 80%; animation-delay: 1s; }
+        .shape-3 { top: 30%; right: 15%; animation-delay: 2s; }
+        .shape-4 { bottom: 20%; left: 20%; animation-delay: 1.5s; }
+        .shape-5 { top: 70%; right: 30%; animation-delay: 2.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero-subtitle {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+        
+        .hero-slogan {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .cta-btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #ffffff;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+        
+        .cta-secondary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: #ffffff;
+        }
+        
+        .cta-secondary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+        }
+        
+        .hero-shapes {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .animated-shape {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .animated-shape:nth-child(2) { animation-delay: 0.2s; }
+        .animated-shape:nth-child(3) { animation-delay: 0.4s; }
+        .animated-shape:nth-child(4) { animation-delay: 0.6s; }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Content Sections */
+        .content-section {
+            width: 100%;
+            background: #ffffff;
+            padding: 4rem 2rem;
+        }
+        
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .feature-desc {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        /* Material Section */
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .material-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .material-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 5rem;
+        }
+        
+        .material-content {
+            padding: 1.5rem;
+        }
+        
+        .material-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .material-desc {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .material-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .material-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Calculator Section */
+        .calculator-container {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(245, 87, 108, 0.3);
+        }
+        
+        .calculator-box {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 20px;
+        }
+        
+        .calc-title {
+            font-size: 2rem;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .calc-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .calc-btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-calculate {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+        
+        .btn-calculate:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #ffffff;
+        }
+        
+        .btn-reset:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(250, 112, 154, 0.4);
+        }
+        
+        .result-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .result-box.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .result-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .result-text {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        /* Quiz Section */
+        .quiz-container {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 3rem;
+            border-radius: 30px;
+        }
+        
+        .quiz-box {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 20px;
+        }
+        
+        .quiz-question {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+        
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .quiz-option {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .quiz-option:hover {
+            background: #e3f2fd;
+            border-color: #667eea;
+            transform: translateX(10px);
+        }
+        
+        .quiz-option.correct {
+            background: #c8e6c9;
+            border-color: #4caf50;
+        }
+        
+        .quiz-option.wrong {
+            background: #ffcdd2;
+            border-color: #f44336;
+        }
+        
+        .quiz-score {
+            text-align: center;
+            font-size: 2rem;
+            color: #667eea;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+        
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .about-text h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+        
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15rem;
+        }
+        
+        /* Footer */
+        .footer {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .rotating {
+            animation: rotate 10s linear infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .hero-slogan {
+                font-size: 1.2rem;
+            }
+            
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                font-size: 8rem;
+            }
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #667eea;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #f5576c;
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .modal-body {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .formula-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .example-box {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .example-step {
+            margin: 1rem 0;
+            padding-left: 1rem;
+        }
+        
+        .highlight {
+            background: #fff59d;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Navigation -->
+  <nav class="navbar">
+   <div class="nav-container">
+    <div class="logo"><span style="font-size: 2rem;">📐</span> <span id="logo-text">Tutor Cerdas</span>
+    </div>
+    <ul class="nav-menu">
+     <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+     <li><a href="#materi" onclick="scrollToSection('materi')">Materi</a></li>
+     <li><a href="#rumus" onclick="scrollToSection('rumus')">Rumus</a></li>
+     <li><a href="#kalkulator" onclick="scrollToSection('kalkulator')">Kalkulator</a></li>
+     <li><a href="#contoh" onclick="scrollToSection('contoh')">Contoh Soal</a></li>
+     <li><a href="#quiz" onclick="scrollToSection('quiz')">Kuis</a></li>
+     <li><a href="#galeri" onclick="scrollToSection('galeri')">Galeri</a></li>
+     <li><a href="#tentang" onclick="scrollToSection('tentang')">Tentang</a></li>
+    </ul>
+   </div>
+  </nav><!-- Hero Section -->
+  <section class="hero-section" id="home">
+   <div class="hero-background">
+    <svg class="floating-shape shape-1" width="80" height="80" viewbox="0 0 80 80"><rect width="80" height="80" fill="#ffffff" />
+    </svg>
+    <svg class="floating-shape shape-2" width="80" height="80" viewbox="0 0 80 80"><circle cx="40" cy="40" r="40" fill="#ffffff" />
+    </svg>
+    <svg class="floating-shape shape-3" width="80" height="80" viewbox="0 0 80 80"><polygon points="40,0 80,80 0,80" fill="#ffffff" />
+    </svg>
+    <svg class="floating-shape shape-4" width="100" height="80" viewbox="0 0 100 80"><polygon points="0,0 100,0 80,80 20,80" fill="#ffffff" />
+    </svg>
+    <svg class="floating-shape shape-5" width="80" height="80" viewbox="0 0 80 80"><polygon points="40,0 80,30 60,80 20,80 0,30" fill="#ffffff" />
+    </svg>
+   </div>
+   <div class="hero-content">
+    <h1 class="hero-title" id="hero-title">Rancang Bangun Tutor Cerdas Berbasis Web</h1>
+    <h2 class="hero-subtitle" id="hero-subtitle">Materi Bangun Datar</h2>
+    <p class="hero-slogan" id="hero-slogan">Belajar Geometri Jadi Lebih Mudah dan Menyenangkan!</p>
+    <div class="cta-buttons"><button class="cta-btn cta-primary" id="cta-primary" onclick="scrollToSection('materi')">Mulai Belajar</button> <button class="cta-btn cta-secondary" id="cta-secondary" onclick="scrollToSection('kalkulator')">Buka Kalkulator</button>
+    </div>
+    <div class="hero-shapes">
+     <div class="animated-shape"><span style="font-size: 4rem;">⬛</span>
+     </div>
+     <div class="animated-shape"><span style="font-size: 4rem;">🔺</span>
+     </div>
+     <div class="animated-shape"><span style="font-size: 4rem;">⭕</span>
+     </div>
+     <div class="animated-shape"><span style="font-size: 4rem;">🔶</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Features Preview -->
+  <section class="content-section">
+   <div class="section-container">
+    <h2 class="section-title">🌟 Fitur Lengkap &amp; Interaktif</h2>
+    <p class="section-subtitle">Semua yang kamu butuhkan untuk menguasai bangun datar</p>
+    <div class="features-grid">
+     <div class="feature-card" onclick="scrollToSection('materi')">
+      <div class="feature-icon">
+       📚
+      </div>
+      <h3 class="feature-title">Materi Lengkap</h3>
+      <p class="feature-desc">Penjelasan detail semua jenis bangun datar dengan ilustrasi menarik</p>
+     </div>
+     <div class="feature-card" onclick="scrollToSection('kalkulator')">
+      <div class="feature-icon">
+       🧮
+      </div>
+      <h3 class="feature-title">Kalkulator Otomatis</h3>
+      <p class="feature-desc">Hitung luas dan keliling dengan mudah dan cepat</p>
+     </div>
+     <div class="feature-card" onclick="scrollToSection('rumus')">
+      <div class="feature-icon">
+       📐
+      </div>
+      <h3 class="feature-title">Rumus Lengkap</h3>
+      <p class="feature-desc">Kumpulan rumus bangun datar dalam satu tempat</p>
+     </div>
+     <div class="feature-card" onclick="scrollToSection('quiz')">
+      <div class="feature-icon">
+       🎮
+      </div>
+      <h3 class="feature-title">Kuis Seru</h3>
+      <p class="feature-desc">Uji pemahamanmu dengan kuis interaktif</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Materi Section -->
+  <section class="content-section" id="materi" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+   <div class="section-container">
+    <h2 class="section-title">📖 Materi Lengkap Bangun Datar</h2>
+    <p class="section-subtitle">Pilih bangun datar yang ingin kamu pelajari</p>
+    <div class="material-grid">
+     <div class="material-card" onclick="showMaterial('persegi')">
+      <div class="material-image">
+       ⬛
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Persegi</h3>
+       <p class="material-desc">Bangun datar dengan 4 sisi sama panjang dan 4 sudut siku-siku</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+     <div class="material-card" onclick="showMaterial('persegipanjang')">
+      <div class="material-image">
+       ▭
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Persegi Panjang</h3>
+       <p class="material-desc">Bangun datar dengan sisi berhadapan sama panjang dan 4 sudut siku-siku</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+     <div class="material-card" onclick="showMaterial('segitiga')">
+      <div class="material-image">
+       🔺
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Segitiga</h3>
+       <p class="material-desc">Bangun datar dengan 3 sisi dan 3 sudut</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+     <div class="material-card" onclick="showMaterial('lingkaran')">
+      <div class="material-image">
+       ⭕
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Lingkaran</h3>
+       <p class="material-desc">Bangun datar dengan semua titik berjarak sama dari pusat</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+     <div class="material-card" onclick="showMaterial('jajargenjang')">
+      <div class="material-image">
+       ▱
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Jajar Genjang</h3>
+       <p class="material-desc">Bangun datar dengan sisi berhadapan sejajar dan sama panjang</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+     <div class="material-card" onclick="showMaterial('trapesium')">
+      <div class="material-image">
+       ⏢
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Trapesium</h3>
+       <p class="material-desc">Bangun datar dengan sepasang sisi sejajar</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+     <div class="material-card" onclick="showMaterial('belahketupat')">
+      <div class="material-image">
+       🔶
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Belah Ketupat</h3>
+       <p class="material-desc">Bangun datar dengan 4 sisi sama panjang dan diagonal berpotongan tegak lurus</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+     <div class="material-card" onclick="showMaterial('layanglayang')">
+      <div class="material-image">
+       🪁
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Layang-Layang</h3>
+       <p class="material-desc">Bangun datar dengan 2 pasang sisi berdekatan sama panjang</p>
+       <div class="material-buttons"><button class="material-btn btn-primary">Pelajari</button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Rumus Section -->
+  <section class="content-section" id="rumus">
+   <div class="section-container">
+    <h2 class="section-title">📐 Rumus Lengkap Bangun Datar</h2>
+    <p class="section-subtitle">Kumpulan rumus yang mudah dipahami dan digunakan</p>
+    <div style="overflow-x: auto;">
+     <table style="width: 100%; border-collapse: collapse; margin-top: 2rem;">
+      <thead>
+       <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <th style="padding: 1.5rem; text-align: left; font-size: 1.2rem;">Bangun Datar</th>
+        <th style="padding: 1.5rem; text-align: left; font-size: 1.2rem;">Rumus Luas</th>
+        <th style="padding: 1.5rem; text-align: left; font-size: 1.2rem;">Rumus Keliling</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr style="background: #f8f9fa;">
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">⬛ Persegi</td>
+        <td style="padding: 1rem;">L = s × s</td>
+        <td style="padding: 1rem;">K = 4 × s</td>
+       </tr>
+       <tr>
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">▭ Persegi Panjang</td>
+        <td style="padding: 1rem;">L = p × l</td>
+        <td style="padding: 1rem;">K = 2 × (p + l)</td>
+       </tr>
+       <tr style="background: #f8f9fa;">
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">🔺 Segitiga</td>
+        <td style="padding: 1rem;">L = ½ × a × t</td>
+        <td style="padding: 1rem;">K = a + b + c</td>
+       </tr>
+       <tr>
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">⭕ Lingkaran</td>
+        <td style="padding: 1rem;">L = π × r²</td>
+        <td style="padding: 1rem;">K = 2 × π × r</td>
+       </tr>
+       <tr style="background: #f8f9fa;">
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">▱ Jajar Genjang</td>
+        <td style="padding: 1rem;">L = a × t</td>
+        <td style="padding: 1rem;">K = 2 × (a + b)</td>
+       </tr>
+       <tr>
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">⏢ Trapesium</td>
+        <td style="padding: 1rem;">L = ½ × (a + b) × t</td>
+        <td style="padding: 1rem;">K = a + b + c + d</td>
+       </tr>
+       <tr style="background: #f8f9fa;">
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">🔶 Belah Ketupat</td>
+        <td style="padding: 1rem;">L = ½ × d1 × d2</td>
+        <td style="padding: 1rem;">K = 4 × s</td>
+       </tr>
+       <tr>
+        <td style="padding: 1rem; font-weight: bold; color: #667eea;">🪁 Layang-Layang</td>
+        <td style="padding: 1rem;">L = ½ × d1 × d2</td>
+        <td style="padding: 1rem;">K = 2 × (a + b)</td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </section><!-- Calculator Section -->
+  <section class="content-section" id="kalkulator" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+   <div class="section-container">
+    <h2 class="section-title">🧮 Kalkulator Bangun Datar</h2>
+    <p class="section-subtitle">Hitung luas dan keliling dengan mudah</p>
+    <div class="calculator-container">
+     <div class="calculator-box">
+      <h3 class="calc-title">Coba Hitung Sendiri!</h3>
+      <div class="form-group"><label class="form-label" for="shape-select">Pilih Bangun Datar:</label> <select id="shape-select" class="form-control" onchange="updateCalculatorInputs()"> <option value="">-- Pilih Bangun Datar --</option> <option value="persegi">⬛ Persegi</option> <option value="persegipanjang">▭ Persegi Panjang</option> <option value="segitiga">🔺 Segitiga</option> <option value="lingkaran">⭕ Lingkaran</option> <option value="jajargenjang">▱ Jajar Genjang</option> <option value="trapesium">⏢ Trapesium</option> <option value="belahketupat">🔶 Belah Ketupat</option> <option value="layanglayang">🪁 Layang-Layang</option> </select>
+      </div>
+      <div id="calculator-inputs"></div>
+      <div class="calc-buttons"><button class="calc-btn btn-calculate" onclick="calculateShape()">Hitung</button> <button class="calc-btn btn-reset" onclick="resetCalculator()">Reset</button>
+      </div>
+      <div id="result-box" class="result-box">
+       <h4 class="result-title">Hasil Perhitungan</h4>
+       <div id="result-content" class="result-text"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contoh Soal Section -->
+  <section class="content-section" id="contoh">
+   <div class="section-container">
+    <h2 class="section-title">📝 Contoh Soal &amp; Pembahasan</h2>
+    <p class="section-subtitle">Belajar dari contoh soal yang lengkap</p>
+    <div class="material-grid">
+     <div class="material-card" onclick="showExample(1)">
+      <div class="material-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"><span style="font-size: 4rem;">⬛</span>
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Soal 1 - Persegi</h3>
+       <p class="material-desc">Sebuah persegi memiliki sisi 12 cm. Berapakah luas dan kelilingnya?</p><button class="material-btn btn-primary">Lihat Pembahasan</button>
+      </div>
+     </div>
+     <div class="material-card" onclick="showExample(2)">
+      <div class="material-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"><span style="font-size: 4rem;">⭕</span>
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Soal 2 - Lingkaran</h3>
+       <p class="material-desc">Sebuah lingkaran memiliki jari-jari 7 cm. Hitunglah luasnya! (π = 22/7)</p><button class="material-btn btn-primary">Lihat Pembahasan</button>
+      </div>
+     </div>
+     <div class="material-card" onclick="showExample(3)">
+      <div class="material-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"><span style="font-size: 4rem;">🔺</span>
+      </div>
+      <div class="material-content">
+       <h3 class="material-title">Soal 3 - Segitiga</h3>
+       <p class="material-desc">Sebuah segitiga memiliki alas 10 cm dan tinggi 8 cm. Berapa luasnya?</p><button class="material-btn btn-primary">Lihat Pembahasan</button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Quiz Section -->
+  <section class="content-section" id="quiz" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+   <div class="section-container">
+    <h2 class="section-title">🎮 Kuis Interaktif</h2>
+    <p class="section-subtitle">Uji pemahamanmu tentang bangun datar</p>
+    <div class="quiz-container">
+     <div class="quiz-box">
+      <div id="quiz-content">
+       <div class="quiz-question" id="quiz-question">
+        Bangun datar apa yang memiliki 4 sisi sama panjang dan 4 sudut siku-siku?
+       </div>
+       <div class="quiz-options">
+        <div class="quiz-option" onclick="checkAnswer(this, false)">
+         A. Persegi Panjang
+        </div>
+        <div class="quiz-option" onclick="checkAnswer(this, true)">
+         B. Persegi
+        </div>
+        <div class="quiz-option" onclick="checkAnswer(this, false)">
+         C. Belah Ketupat
+        </div>
+        <div class="quiz-option" onclick="checkAnswer(this, false)">
+         D. Jajar Genjang
+        </div>
+       </div>
+      </div>
+      <div id="quiz-score" class="quiz-score" style="display: none;"></div>
+      <div style="margin-top: 2rem; text-align: center;"><button class="calc-btn btn-calculate" onclick="nextQuestion()">Soal Berikutnya</button> <button class="calc-btn btn-reset" onclick="resetQuiz()">Mulai Ulang</button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Galeri Section -->
+  <section class="content-section" id="galeri">
+   <div class="section-container">
+    <h2 class="section-title">🖼️ Galeri Bangun Datar</h2>
+    <p class="section-subtitle">Koleksi visual berbagai bangun datar</p>
+    <div class="gallery-grid">
+     <div class="gallery-item rotating">
+      ⬛
+     </div>
+     <div class="gallery-item rotating" style="animation-delay: 1s;">
+      ▭
+     </div>
+     <div class="gallery-item rotating" style="animation-delay: 2s;">
+      🔺
+     </div>
+     <div class="gallery-item rotating" style="animation-delay: 3s;">
+      ⭕
+     </div>
+     <div class="gallery-item rotating" style="animation-delay: 4s;">
+      ▱
+     </div>
+     <div class="gallery-item rotating" style="animation-delay: 5s;">
+      ⏢
+     </div>
+     <div class="gallery-item rotating" style="animation-delay: 6s;">
+      🔶
+     </div>
+     <div class="gallery-item rotating" style="animation-delay: 7s;">
+      🪁
+     </div>
+    </div>
+   </div>
+  </section><!-- Tentang Section -->
+  <section class="content-section" id="tentang" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+   <div class="section-container">
+    <h2 class="section-title">ℹ️ Tentang Website</h2>
+    <p class="section-subtitle">Kenali lebih jauh Tutor Cerdas Bangun Datar</p>
+    <div class="about-content">
+     <div class="about-text">
+      <h3>🎯 Tujuan</h3>
+      <p>Website ini dibuat untuk membantu siswa SD, SMP, dan SMA dalam mempelajari materi bangun datar dengan cara yang menyenangkan dan interaktif.</p>
+      <h3>👥 Sasaran Pengguna</h3>
+      <p>Siswa tingkat SD, SMP, dan SMA yang ingin belajar atau mengulang materi bangun datar dengan mudah.</p>
+      <h3>✨ Manfaat</h3>
+      <p>• Materi lengkap dengan penjelasan mudah dipahami<br>
+        • Kalkulator otomatis untuk menghitung luas dan keliling<br>
+        • Contoh soal dengan pembahasan detail<br>
+        • Kuis interaktif untuk menguji pemahaman<br>
+        • Tampilan menarik dan edukatif</p>
+      <h3>💻 Teknologi</h3>
+      <p>Website ini dibangun dengan teknologi web modern untuk memberikan pengalaman belajar yang optimal dan responsif di semua perangkat.</p>
+     </div>
+     <div class="about-image">
+      📚
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="footer">
+   <div class="footer-content">
+    <h3 style="font-size: 2rem; margin-bottom: 1rem;">📐 Tutor Cerdas Bangun Datar</h3>
+    <p style="font-size: 1.2rem; margin-bottom: 1rem;">Belajar Geometri Jadi Lebih Mudah dan Menyenangkan!</p>
+    <p style="opacity: 0.8;">© 2024 Tutor Cerdas. Semua hak dilindungi.</p>
+   </div>
+  </footer><!-- Modal -->
+  <div id="modal" class="modal">
+   <div class="modal-content"><span class="close-modal" onclick="closeModal()">×</span>
+    <h2 class="modal-title" id="modal-title"></h2>
+    <div class="modal-body" id="modal-body"></div>
+   </div>
+  </div>
+  <script>
+        const defaultConfig = {
+            hero_title: "Rancang Bangun Tutor Cerdas Berbasis Web",
+            hero_subtitle: "Materi Bangun Datar",
+            hero_slogan: "Belajar Geometri Jadi Lebih Mudah dan Menyenangkan!",
+            cta_primary: "Mulai Belajar",
+            cta_secondary: "Buka Kalkulator",
+            primary_color: "#667eea",
+            secondary_color: "#764ba2",
+            accent_color: "#f5576c",
+            highlight_color: "#4facfe",
+            background_color: "#ffffff"
+        };
+
+        async function onConfigChange(config) {
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            const heroSlogan = document.getElementById('hero-slogan');
+            const ctaPrimary = document.getElementById('cta-primary');
+            const ctaSecondary = document.getElementById('cta-secondary');
+
+            if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+            if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            if (heroSlogan) heroSlogan.textContent = config.hero_slogan || defaultConfig.hero_slogan;
+            if (ctaPrimary) ctaPrimary.textContent = config.cta_primary || defaultConfig.cta_primary;
+            if (ctaSecondary) ctaSecondary.textContent = config.cta_secondary || defaultConfig.cta_secondary;
+
+            const primaryColor = config.primary_color || defaultConfig.primary_color;
+            const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+            const highlightColor = config.highlight_color || defaultConfig.highlight_color;
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+
+            document.documentElement.style.setProperty('--primary-color', primaryColor);
+            document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+            document.documentElement.style.setProperty('--accent-color', accentColor);
+            document.documentElement.style.setProperty('--highlight-color', highlightColor);
+            document.documentElement.style.setProperty('--background-color', backgroundColor);
+
+            const gradientElements = document.querySelectorAll('.navbar, .hero-section, .footer');
+            gradientElements.forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+            });
+
+            const sectionTitles = document.querySelectorAll('.section-title, .material-title, .calc-title, .result-title, .quiz-score, .about-text h3, .modal-title');
+            sectionTitles.forEach(el => {
+                el.style.color = primaryColor;
+            });
+
+            const primaryButtons = document.querySelectorAll('.cta-primary, .btn-calculate, .feature-card, .material-image');
+            primaryButtons.forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+            });
+
+            const accentButtons = document.querySelectorAll('.cta-secondary');
+            accentButtons.forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${highlightColor} 0%, #00f2fe 100%)`;
+            });
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig: defaultConfig,
+                onConfigChange: onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.primary_color || defaultConfig.primary_color,
+                            set: (value) => {
+                                config.primary_color = value;
+                                window.elementSdk.setConfig({ primary_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.secondary_color || defaultConfig.secondary_color,
+                            set: (value) => {
+                                config.secondary_color = value;
+                                window.elementSdk.setConfig({ secondary_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.accent_color || defaultConfig.accent_color,
+                            set: (value) => {
+                                config.accent_color = value;
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.highlight_color || defaultConfig.highlight_color,
+                            set: (value) => {
+                                config.highlight_color = value;
+                                window.elementSdk.setConfig({ highlight_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["hero_title", config.hero_title || defaultConfig.hero_title],
+                    ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+                    ["hero_slogan", config.hero_slogan || defaultConfig.hero_slogan],
+                    ["cta_primary", config.cta_primary || defaultConfig.cta_primary],
+                    ["cta_secondary", config.cta_secondary || defaultConfig.cta_secondary]
+                ])
+            });
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        const materials = {
+            persegi: {
+                title: "Persegi",
+                icon: "⬛",
+                definition: "Persegi adalah bangun datar yang memiliki 4 sisi sama panjang dan 4 sudut siku-siku (90°).",
+                properties: [
+                    "Memiliki 4 sisi yang sama panjang",
+                    "Memiliki 4 sudut siku-siku (90°)",
+                    "Memiliki 2 diagonal yang sama panjang dan berpotongan tegak lurus",
+                    "Memiliki 4 sumbu simetri"
+                ],
+                formula_area: "L = s × s atau L = s²",
+                formula_perimeter: "K = 4 × s",
+                example: "Sebuah persegi memiliki panjang sisi 8 cm. Hitunglah luas dan kelilingnya!",
+                solution: [
+                    "Diketahui: s = 8 cm",
+                    "Ditanya: Luas dan Keliling",
+                    "Luas = s × s = 8 × 8 = 64 cm²",
+                    "Keliling = 4 × s = 4 × 8 = 32 cm"
+                ]
+            },
+            persegipanjang: {
+                title: "Persegi Panjang",
+                icon: "▭",
+                definition: "Persegi panjang adalah bangun datar yang memiliki 2 pasang sisi sejajar dan sama panjang, serta 4 sudut siku-siku.",
+                properties: [
+                    "Sisi yang berhadapan sama panjang dan sejajar",
+                    "Memiliki 4 sudut siku-siku (90°)",
+                    "Memiliki 2 diagonal yang sama panjang",
+                    "Memiliki 2 sumbu simetri"
+                ],
+                formula_area: "L = p × l",
+                formula_perimeter: "K = 2 × (p + l)",
+                example: "Sebuah persegi panjang memiliki panjang 12 cm dan lebar 7 cm. Hitunglah luas dan kelilingnya!",
+                solution: [
+                    "Diketahui: p = 12 cm, l = 7 cm",
+                    "Ditanya: Luas dan Keliling",
+                    "Luas = p × l = 12 × 7 = 84 cm²",
+                    "Keliling = 2 × (p + l) = 2 × (12 + 7) = 2 × 19 = 38 cm"
+                ]
+            },
+            segitiga: {
+                title: "Segitiga",
+                icon: "🔺",
+                definition: "Segitiga adalah bangun datar yang dibentuk oleh 3 garis yang saling berpotongan dan membentuk 3 sudut.",
+                properties: [
+                    "Memiliki 3 sisi dan 3 sudut",
+                    "Jumlah ketiga sudutnya adalah 180°",
+                    "Jenis segitiga berdasarkan sisi: sama sisi, sama kaki, sembarang",
+                    "Jenis segitiga berdasarkan sudut: lancip, tumpul, siku-siku"
+                ],
+                formula_area: "L = ½ × alas × tinggi",
+                formula_perimeter: "K = a + b + c",
+                example: "Sebuah segitiga memiliki alas 10 cm dan tinggi 6 cm. Hitunglah luasnya!",
+                solution: [
+                    "Diketahui: alas = 10 cm, tinggi = 6 cm",
+                    "Ditanya: Luas",
+                    "Luas = ½ × alas × tinggi",
+                    "Luas = ½ × 10 × 6 = 30 cm²"
+                ]
+            },
+            lingkaran: {
+                title: "Lingkaran",
+                icon: "⭕",
+                definition: "Lingkaran adalah himpunan semua titik pada bidang datar yang berjarak sama terhadap suatu titik tertentu (pusat lingkaran).",
+                properties: [
+                    "Memiliki jari-jari (r) dari pusat ke tepi lingkaran",
+                    "Diameter (d) = 2 × jari-jari",
+                    "Nilai π (pi) ≈ 3.14 atau 22/7",
+                    "Memiliki tak hingga sumbu simetri"
+                ],
+                formula_area: "L = π × r²",
+                formula_perimeter: "K = 2 × π × r atau K = π × d",
+                example: "Sebuah lingkaran memiliki jari-jari 7 cm. Hitunglah luasnya! (π = 22/7)",
+                solution: [
+                    "Diketahui: r = 7 cm, π = 22/7",
+                    "Ditanya: Luas",
+                    "Luas = π × r²",
+                    "Luas = 22/7 × 7 × 7 = 22 × 7 = 154 cm²"
+                ]
+            },
+            jajargenjang: {
+                title: "Jajar Genjang",
+                icon: "▱",
+                definition: "Jajar genjang adalah bangun datar segi empat yang memiliki 2 pasang sisi sejajar dan sama panjang.",
+                properties: [
+                    "Sisi yang berhadapan sejajar dan sama panjang",
+                    "Sudut yang berhadapan sama besar",
+                    "Memiliki 2 diagonal yang tidak sama panjang",
+                    "Tidak memiliki sumbu simetri"
+                ],
+                formula_area: "L = alas × tinggi",
+                formula_perimeter: "K = 2 × (a + b)",
+                example: "Sebuah jajar genjang memiliki alas 12 cm dan tinggi 8 cm. Hitunglah luasnya!",
+                solution: [
+                    "Diketahui: alas = 12 cm, tinggi = 8 cm",
+                    "Ditanya: Luas",
+                    "Luas = alas × tinggi",
+                    "Luas = 12 × 8 = 96 cm²"
+                ]
+            },
+            trapesium: {
+                title: "Trapesium",
+                icon: "⏢",
+                definition: "Trapesium adalah bangun datar segi empat yang memiliki tepat sepasang sisi yang sejajar.",
+                properties: [
+                    "Memiliki sepasang sisi sejajar (sisi atas dan bawah)",
+                    "Jenis: trapesium sama kaki, trapesium siku-siku, trapesium sembarang",
+                    "Trapesium sama kaki memiliki 1 sumbu simetri",
+                    "Jumlah sudut dalam = 360°"
+                ],
+                formula_area: "L = ½ × (a + b) × tinggi",
+                formula_perimeter: "K = jumlah semua sisi",
+                example: "Sebuah trapesium memiliki sisi sejajar 10 cm dan 6 cm, dengan tinggi 8 cm. Hitunglah luasnya!",
+                solution: [
+                    "Diketahui: a = 10 cm, b = 6 cm, t = 8 cm",
+                    "Ditanya: Luas",
+                    "Luas = ½ × (a + b) × t",
+                    "Luas = ½ × (10 + 6) × 8 = ½ × 16 × 8 = 64 cm²"
+                ]
+            },
+            belahketupat: {
+                title: "Belah Ketupat",
+                icon: "🔶",
+                definition: "Belah ketupat adalah bangun datar segi empat yang keempat sisinya sama panjang dan diagonal-diagonalnya berpotongan tegak lurus.",
+                properties: [
+                    "Keempat sisinya sama panjang",
+                    "Sudut yang berhadapan sama besar",
+                    "Diagonal berpotongan tegak lurus dan membagi dua sama panjang",
+                    "Memiliki 2 sumbu simetri"
+                ],
+                formula_area: "L = ½ × d1 × d2",
+                formula_perimeter: "K = 4 × s",
+                example: "Sebuah belah ketupat memiliki diagonal 12 cm dan 16 cm. Hitunglah luasnya!",
+                solution: [
+                    "Diketahui: d1 = 12 cm, d2 = 16 cm",
+                    "Ditanya: Luas",
+                    "Luas = ½ × d1 × d2",
+                    "Luas = ½ × 12 × 16 = 96 cm²"
+                ]
+            },
+            layanglayang: {
+                title: "Layang-Layang",
+                icon: "🪁",
+                definition: "Layang-layang adalah bangun datar segi empat yang memiliki 2 pasang sisi sama panjang yang berdekatan.",
+                properties: [
+                    "Memiliki 2 pasang sisi sama panjang yang berdekatan",
+                    "Memiliki 1 pasang sudut berhadapan yang sama besar",
+                    "Diagonal berpotongan tegak lurus",
+                    "Memiliki 1 sumbu simetri"
+                ],
+                formula_area: "L = ½ × d1 × d2",
+                formula_perimeter: "K = 2 × (a + b)",
+                example: "Sebuah layang-layang memiliki diagonal 10 cm dan 14 cm. Hitunglah luasnya!",
+                solution: [
+                    "Diketahui: d1 = 10 cm, d2 = 14 cm",
+                    "Ditanya: Luas",
+                    "Luas = ½ × d1 × d2",
+                    "Luas = ½ × 10 × 14 = 70 cm²"
+                ]
+            }
+        };
+
+        function showMaterial(type) {
+            const material = materials[type];
+            if (!material) return;
+
+            let content = `
+                <div style="text-align: center; font-size: 6rem; margin-bottom: 2rem;">${material.icon}</div>
+                <h3 style="color: #667eea; font-size: 1.8rem; margin-bottom: 1rem;">Definisi</h3>
+                <p style="line-height: 1.8; margin-bottom: 2rem;">${material.definition}</p>
+                
+                <h3 style="color: #667eea; font-size: 1.8rem; margin-bottom: 1rem;">Sifat-Sifat</h3>
+                <ul style="line-height: 2; margin-bottom: 2rem; padding-left: 2rem;">
+                    ${material.properties.map(prop => `<li>${prop}</li>`).join('')}
+                </ul>
+                
+                <h3 style="color: #667eea; font-size: 1.8rem; margin-bottom: 1rem;">Rumus</h3>
+                <div class="formula-box">Luas: ${material.formula_area}</div>
+                <div class="formula-box">Keliling: ${material.formula_perimeter}</div>
+                
+                <h3 style="color: #667eea; font-size: 1.8rem; margin-bottom: 1rem; margin-top: 2rem;">Contoh Soal</h3>
+                <div class="example-box">
+                    <p style="font-weight: bold; margin-bottom: 1rem;">${material.example}</p>
+                    ${material.solution.map((step, index) => `
+                        <div class="example-step">
+                            <strong>Langkah ${index + 1}:</strong> ${step}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            showModal(material.title, content);
+        }
+
+        function updateCalculatorInputs() {
+            const select = document.getElementById('shape-select');
+            const inputsDiv = document.getElementById('calculator-inputs');
+            const resultBox = document.getElementById('result-box');
+            
+            resultBox.classList.remove('show');
+            
+            const shapes = {
+                persegi: `
+                    <div class="form-group">
+                        <label class="form-label" for="sisi">Panjang Sisi (cm):</label>
+                        <input type="number" id="sisi" class="form-control" placeholder="Masukkan panjang sisi">
+                    </div>
+                `,
+                persegipanjang: `
+                    <div class="form-group">
+                        <label class="form-label" for="panjang">Panjang (cm):</label>
+                        <input type="number" id="panjang" class="form-control" placeholder="Masukkan panjang">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lebar">Lebar (cm):</label>
+                        <input type="number" id="lebar" class="form-control" placeholder="Masukkan lebar">
+                    </div>
+                `,
+                segitiga: `
+                    <div class="form-group">
+                        <label class="form-label" for="alas">Alas (cm):</label>
+                        <input type="number" id="alas" class="form-control" placeholder="Masukkan alas">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="tinggi">Tinggi (cm):</label>
+                        <input type="number" id="tinggi" class="form-control" placeholder="Masukkan tinggi">
+                    </div>
+                `,
+                lingkaran: `
+                    <div class="form-group">
+                        <label class="form-label" for="jari">Jari-jari (cm):</label>
+                        <input type="number" id="jari" class="form-control" placeholder="Masukkan jari-jari">
+                    </div>
+                `,
+                jajargenjang: `
+                    <div class="form-group">
+                        <label class="form-label" for="alas-jj">Alas (cm):</label>
+                        <input type="number" id="alas-jj" class="form-control" placeholder="Masukkan alas">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="tinggi-jj">Tinggi (cm):</label>
+                        <input type="number" id="tinggi-jj" class="form-control" placeholder="Masukkan tinggi">
+                    </div>
+                `,
+                trapesium: `
+                    <div class="form-group">
+                        <label class="form-label" for="sisi-atas">Sisi Atas (cm):</label>
+                        <input type="number" id="sisi-atas" class="form-control" placeholder="Masukkan sisi atas">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="sisi-bawah">Sisi Bawah (cm):</label>
+                        <input type="number" id="sisi-bawah" class="form-control" placeholder="Masukkan sisi bawah">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="tinggi-trap">Tinggi (cm):</label>
+                        <input type="number" id="tinggi-trap" class="form-control" placeholder="Masukkan tinggi">
+                    </div>
+                `,
+                belahketupat: `
+                    <div class="form-group">
+                        <label class="form-label" for="diagonal1">Diagonal 1 (cm):</label>
+                        <input type="number" id="diagonal1" class="form-control" placeholder="Masukkan diagonal 1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="diagonal2">Diagonal 2 (cm):</label>
+                        <input type="number" id="diagonal2" class="form-control" placeholder="Masukkan diagonal 2">
+                    </div>
+                `,
+                layanglayang: `
+                    <div class="form-group">
+                        <label class="form-label" for="d1-ll">Diagonal 1 (cm):</label>
+                        <input type="number" id="d1-ll" class="form-control" placeholder="Masukkan diagonal 1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="d2-ll">Diagonal 2 (cm):</label>
+                        <input type="number" id="d2-ll" class="form-control" placeholder="Masukkan diagonal 2">
+                    </div>
+                `
+            };
+            
+            inputsDiv.innerHTML = shapes[select.value] || '';
+        }
+
+        function calculateShape() {
+            const select = document.getElementById('shape-select');
+            const shape = select.value;
+            
+            if (!shape) {
+                showToast('Pilih bangun datar terlebih dahulu!');
+                return;
+            }
+            
+            let result = '';
+            let luas = 0;
+            let keliling = 0;
+            
+            try {
+                switch(shape) {
+                    case 'persegi':
+                        const s = parseFloat(document.getElementById('sisi').value);
+                        if (isNaN(s) || s <= 0) throw new Error('Masukkan nilai yang valid!');
+                        luas = s * s;
+                        keliling = 4 * s;
+                        result = `
+                            <p><strong>Rumus yang digunakan:</strong></p>
+                            <p class="highlight">Luas = s × s</p>
+                            <p class="highlight">Keliling = 4 × s</p>
+                            <p style="margin-top: 1.5rem;"><strong>Perhitungan:</strong></p>
+                            <p>Luas = ${s} × ${s} = <span class="highlight">${luas} cm²</span></p>
+                            <p>Keliling = 4 × ${s} = <span class="highlight">${keliling} cm</span></p>
+                        `;
+                        break;
+                        
+                    case 'persegipanjang':
+                        const p = parseFloat(document.getElementById('panjang').value);
+                        const l = parseFloat(document.getElementById('lebar').value);
+                        if (isNaN(p) || isNaN(l) || p <= 0 || l <= 0) throw new Error('Masukkan nilai yang valid!');
+                        luas = p * l;
+                        keliling = 2 * (p + l);
+                        result = `
+                            <p><strong>Rumus yang digunakan:</strong></p>
+                            <p class="highlight">Luas = p × l</p>
+                            <p class="highlight">Keliling = 2 × (p + l)</p>
+                            <p style="margin-top: 1.5rem;"><strong>Perhitungan:</strong></p>
+                            <p>Luas = ${p} × ${l} = <span class="highlight">${luas} cm²</span></p>
+                            <p>Keliling = 2 × (${p} + ${l}) = <span class="highlight">${keliling} cm</span></p>
+                        `;
+                        break;
+                        
+                    case 'segitiga':
+                        const a = parseFloat(document.getElementById('alas').value);
+                        const t = parseFloat(document.getElementById('tinggi').value);
+                        if (isNaN(a) || isNaN(t) || a <= 0 || t <= 0) throw new Error('Masukkan nilai yang valid!');
+                        luas = 0.5 * a * t;
+                        result = `
+                            <p><strong>Rumus yang digunakan:</strong></p>
+                            <p class="highlight">Luas = ½ × alas × tinggi</p>
+                            <p style="margin-top: 1.5rem;"><strong>Perhitungan:</strong></p>
+                            <p>Luas = ½ × ${a} × ${t} = <span class="highlight">${luas} cm²</span></p>
+                        `;
+                        break;
+                        
+                    case 'lingkaran':
+                        const r = parseFloat(document.getElementById('jari').value);
+                        if (isNaN(r) || r <= 0) throw new Error('Masukkan nilai yang valid!');
+                        luas = Math.PI * r * r;
+                        keliling = 2 * Math.PI * r;
+                        result = `
+                            <p><strong>Rumus yang digunakan:</strong></p>
+                            <p class="highlight">Luas = π × r²</p>
+                            <p class="highlight">Keliling = 2 × π × r</p>
+                            <p style="margin-top: 1.5rem;"><strong>Perhitungan:</strong></p>
+                            <p>Luas = 3.14 × ${r}² = <span class="highlight">${luas.toFixed(2)} cm²</span></p>
+                            <p>Keliling = 2 × 3.14 × ${r} = <span class="highlight">${keliling.toFixed(2)} cm</span></p>
+                        `;
+                        break;
+                        
+                    case 'jajargenjang':
+                        const aj = parseFloat(document.getElementById('alas-jj').value);
+                        const tj = parseFloat(document.getElementById('tinggi-jj').value);
+                        if (isNaN(aj) || isNaN(tj) || aj <= 0 || tj <= 0) throw new Error('Masukkan nilai yang valid!');
+                        luas = aj * tj;
+                        result = `
+                            <p><strong>Rumus yang digunakan:</strong></p>
+                            <p class="highlight">Luas = alas × tinggi</p>
+                            <p style="margin-top: 1.5rem;"><strong>Perhitungan:</strong></p>
+                            <p>Luas = ${aj} × ${tj} = <span class="highlight">${luas} cm²</span></p>
+                        `;
+                        break;
+                        
+                    case 'trapesium':
+                        const sa = parseFloat(document.getElementById('sisi-atas').value);
+                        const sb = parseFloat(document.getElementById('sisi-bawah').value);
+                        const tt = parseFloat(document.getElementById('tinggi-trap').value);
+                        if (isNaN(sa) || isNaN(sb) || isNaN(tt) || sa <= 0 || sb <= 0 || tt <= 0) throw new Error('Masukkan nilai yang valid!');
+                        luas = 0.5 * (sa + sb) * tt;
+                        result = `
+                            <p><strong>Rumus yang digunakan:</strong></p>
+                            <p class="highlight">Luas = ½ × (a + b) × tinggi</p>
+                            <p style="margin-top: 1.5rem;"><strong>Perhitungan:</strong></p>
+                            <p>Luas = ½ × (${sa} + ${sb}) × ${tt} = <span class="highlight">${luas} cm²</span></p>
+                        `;
+                        break;
+                        
+                    case 'belahketupat':
+                    case 'layanglayang':
+                        const d1Id = shape === 'belahketupat' ? 'diagonal1' : 'd1-ll';
+                        const d2Id = shape === 'belahketupat' ? 'diagonal2' : 'd2-ll';
+                        const d1 = parseFloat(document.getElementById(d1Id).value);
+                        const d2 = parseFloat(document.getElementById(d2Id).value);
+                        if (isNaN(d1) || isNaN(d2) || d1 <= 0 || d2 <= 0) throw new Error('Masukkan nilai yang valid!');
+                        luas = 0.5 * d1 * d2;
+                        result = `
+                            <p><strong>Rumus yang digunakan:</strong></p>
+                            <p class="highlight">Luas = ½ × d1 × d2</p>
+                            <p style="margin-top: 1.5rem;"><strong>Perhitungan:</strong></p>
+                            <p>Luas = ½ × ${d1} × ${d2} = <span class="highlight">${luas} cm²</span></p>
+                        `;
+                        break;
+                }
+                
+                const resultBox = document.getElementById('result-box');
+                const resultContent = document.getElementById('result-content');
+                resultContent.innerHTML = result;
+                resultBox.classList.add('show');
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+            } catch (error) {
+                showToast(error.message);
+            }
+        }
+
+        function resetCalculator() {
+            document.getElementById('shape-select').value = '';
+            document.getElementById('calculator-inputs').innerHTML = '';
+            document.getElementById('result-box').classList.remove('show');
+        }
+
+        const examples = {
+            1: {
+                title: "Pembahasan Soal 1 - Persegi",
+                content: `
+                    <div class="example-box">
+                        <p style="font-weight: bold; font-size: 1.2rem;">Soal:</p>
+                        <p>Sebuah persegi memiliki sisi 12 cm. Berapakah luas dan kelilingnya?</p>
+                        
+                        <div class="example-step">
+                            <strong>Diketahui:</strong><br>
+                            Sisi (s) = 12 cm
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Ditanya:</strong><br>
+                            Luas dan Keliling persegi
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Rumus:</strong><br>
+                            <span class="highlight">Luas = s × s</span><br>
+                            <span class="highlight">Keliling = 4 × s</span>
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Substitusi:</strong><br>
+                            Luas = 12 × 12 = 144 cm²<br>
+                            Keliling = 4 × 12 = 48 cm
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Jawaban Akhir:</strong><br>
+                            <span class="highlight">Luas persegi = 144 cm²</span><br>
+                            <span class="highlight">Keliling persegi = 48 cm</span>
+                        </div>
+                    </div>
+                `
+            },
+            2: {
+                title: "Pembahasan Soal 2 - Lingkaran",
+                content: `
+                    <div class="example-box">
+                        <p style="font-weight: bold; font-size: 1.2rem;">Soal:</p>
+                        <p>Sebuah lingkaran memiliki jari-jari 7 cm. Hitunglah luasnya! (π = 22/7)</p>
+                        
+                        <div class="example-step">
+                            <strong>Diketahui:</strong><br>
+                            Jari-jari (r) = 7 cm<br>
+                            π = 22/7
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Ditanya:</strong><br>
+                            Luas lingkaran
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Rumus:</strong><br>
+                            <span class="highlight">Luas = π × r²</span>
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Substitusi:</strong><br>
+                            Luas = 22/7 × 7 × 7<br>
+                            Luas = 22 × 7<br>
+                            Luas = 154 cm²
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Jawaban Akhir:</strong><br>
+                            <span class="highlight">Luas lingkaran = 154 cm²</span>
+                        </div>
+                    </div>
+                `
+            },
+            3: {
+                title: "Pembahasan Soal 3 - Segitiga",
+                content: `
+                    <div class="example-box">
+                        <p style="font-weight: bold; font-size: 1.2rem;">Soal:</p>
+                        <p>Sebuah segitiga memiliki alas 10 cm dan tinggi 8 cm. Berapa luasnya?</p>
+                        
+                        <div class="example-step">
+                            <strong>Diketahui:</strong><br>
+                            Alas (a) = 10 cm<br>
+                            Tinggi (t) = 8 cm
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Ditanya:</strong><br>
+                            Luas segitiga
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Rumus:</strong><br>
+                            <span class="highlight">Luas = ½ × alas × tinggi</span>
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Substitusi:</strong><br>
+                            Luas = ½ × 10 × 8<br>
+                            Luas = 5 × 8<br>
+                            Luas = 40 cm²
+                        </div>
+                        
+                        <div class="example-step">
+                            <strong>Jawaban Akhir:</strong><br>
+                            <span class="highlight">Luas segitiga = 40 cm²</span>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function showExample(num) {
+            const example = examples[num];
+            if (example) {
+                showModal(example.title, example.content);
+            }
+        }
+
+        let currentQuizScore = 0;
+        let quizAnswered = false;
+
+        const quizQuestions = [
+            {
+                question: "Bangun datar apa yang memiliki 4 sisi sama panjang dan 4 sudut siku-siku?",
+                options: ["Persegi Panjang", "Persegi", "Belah Ketupat", "Jajar Genjang"],
+                correct: 1
+            },
+            {
+                question: "Rumus luas lingkaran adalah...",
+                options: ["π × r", "π × r²", "2 × π × r", "π × d"],
+                correct: 1
+            },
+            {
+                question: "Berapa jumlah sisi pada segitiga?",
+                options: ["2", "3", "4", "5"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function checkAnswer(element, isCorrect) {
+            if (quizAnswered) return;
+            
+            quizAnswered = true;
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                currentQuizScore += 10;
+                showToast('✅ Benar! Hebat!');
+            } else {
+                element.classList.add('wrong');
+                const correctOption = document.querySelectorAll('.quiz-option')[quizQuestions[currentQuestion].correct];
+                correctOption.classList.add('correct');
+                showToast('❌ Coba lagi! Lihat jawaban yang benar.');
+            }
+            
+            document.getElementById('quiz-score').textContent = `Skor: ${currentQuizScore}`;
+            document.getElementById('quiz-score').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion = (currentQuestion + 1) % quizQuestions.length;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            quizAnswered = false;
+            const q = quizQuestions[currentQuestion];
+            
+            document.getElementById('quiz-question').textContent = q.question;
+            
+            const optionsHtml = q.options.map((opt, index) => `
+                <div class="quiz-option" onclick="checkAnswer(this, ${index === q.correct})">
+                    ${String.fromCharCode(65 + index)}. ${opt}
+                </div>
+            `).join('');
+            
+            document.querySelector('.quiz-options').innerHTML = optionsHtml;
+        }
+
+        function resetQuiz() {
+            currentQuizScore = 0;
+            currentQuestion = 0;
+            document.getElementById('quiz-score').style.display = 'none';
+            loadQuestion();
+        }
+
+        function showModal(title, content) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').innerHTML = content;
+            document.getElementById('modal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                z-index: 3000;
+                animation: slideInRight 0.3s ease;
+                font-weight: 500;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a63056c23e58093',t:'MTc2NDQyODkxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
